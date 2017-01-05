@@ -13,8 +13,10 @@
 // Both the x and y dimention of blocks as they are square
 #define BLOCK_DIM 16
 
+// The texture that is used to cache the original image
 texture<unsigned char, 2> imageTex;
 
+// Data structure that holds images read from pbm files
 struct Image {
     int width;
     int height;
@@ -22,9 +24,11 @@ struct Image {
     unsigned char *dev_img;
 };
 
+// The kernal that implements the Sobel operator
     __global__
 void filter(unsigned char *filtered, int width, int height)
 {
+    // Use shared memory to cache memory writes to global memory
     __shared__ int cache[BLOCK_DIM * BLOCK_DIM];
 
     int stride = 0;
