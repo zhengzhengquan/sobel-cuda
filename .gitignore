@@ -1,4 +1,5 @@
 ./bin/run.out
+./images/sobel.new.pgm
 
 # Compiled Object files
 *.slo
